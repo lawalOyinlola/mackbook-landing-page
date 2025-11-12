@@ -113,7 +113,7 @@ body {
   }
 
   #hero {
-    @apply h-fit lg:h-[80vh] col-center mt-40 lg:mt-20 2xl:mt-[7vh];
+    @apply lg:h-[80vh] col-center mt-40 lg:mt-20 2xl:mt-[7vh];
 
     div {
       @apply relative z-10 col-center lg:translate-y-16;
@@ -155,9 +155,9 @@ body {
       }
 
       .color-control {
-        @apply flex-between bg-neutral-800 rounded-full px-6 py-3 gap-4;
+        @apply flex-between bg-neutral-800 rounded-full px-5 py-3 gap-4;
 
-        div {
+        button {
           @apply size-7 rounded-full cursor-pointer;
         }
 
@@ -167,9 +167,9 @@ body {
       }
 
       .size-control {
-        @apply small-medium flex-between bg-neutral-800 rounded-full px-6 py-2.5 gap-2;
+        @apply small-medium flex-between bg-neutral-800 rounded-full px-5 py-2.5 gap-2;
 
-        div {
+        button {
           @apply size-8 rounded-full cursor-pointer bg-white text-black flex-center;
         }
       }
