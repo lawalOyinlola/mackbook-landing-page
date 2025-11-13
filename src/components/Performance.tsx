@@ -9,30 +9,36 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Performance = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
       const sectionEl = sectionRef.current;
       if (!sectionEl) return;
 
-      // Text Animation
-      gsap.fromTo(
-        ".content p",
-        { opacity: 0, y: 10 },
-        {
-          opacity: 1,
-          y: 0,
-          ease: "power1.out",
-          scrollTrigger: {
-            trigger: ".content p",
-            start: "top bottom",
-            end: "top center",
-            scrub: true,
-            invalidateOnRefresh: true,
-          },
-        }
-      );
+      // Create scoped selector for this component
+      const q = gsap.utils.selector(sectionEl);
+
+      // Text Animation - use direct element references
+      const contentElement = sectionEl.querySelector<HTMLElement>(".content p");
+      if (contentElement) {
+        gsap.fromTo(
+          contentElement,
+          { opacity: 0, y: 10 },
+          {
+            opacity: 1,
+            y: 0,
+            ease: "power1.out",
+            scrollTrigger: {
+              trigger: contentElement,
+              start: "top bottom",
+              end: "top center",
+              scrub: true,
+              invalidateOnRefresh: true,
+            },
+          }
+        );
+      }
 
       if (isMobile) return;
 
@@ -52,7 +58,9 @@ const Performance = () => {
       performanceImgPositions.forEach((item) => {
         if (item.id === "p5") return;
 
-        const selector = `.${item.id}`;
+        const scopedSelector = q(`.${item.id}`);
+        if (scopedSelector.length === 0) return;
+
         const vars: Record<string, string> = {};
 
         if (typeof item.left === "number") vars.left = `${item.left}%`;
@@ -61,7 +69,7 @@ const Performance = () => {
 
         if (item.transform) vars.transform = item.transform;
 
-        tl.to(selector, vars, 0);
+        tl.to(scopedSelector, vars, 0);
       });
     },
     { scope: sectionRef }
@@ -78,7 +86,16 @@ const Performance = () => {
               ? item.alt
               : `Performance Image #${index + 1}`;
           return (
-            <img key={index} src={item.src} className={item.id} alt={alt} />
+            <img
+              key={item.id}
+              src={item.src}
+              className={item.id}
+              alt={alt}
+              loading={index < 2 ? "eager" : "lazy"}
+              decoding="async"
+              width={800}
+              height={600}
+            />
           );
         })}
       </div>

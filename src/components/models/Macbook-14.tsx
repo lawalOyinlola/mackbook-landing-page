@@ -8,7 +8,7 @@ Source: https://sketchfab.com/3d-models/macbook-pro-m3-16-inch-2024-8e34fc2b3031
 Title: macbook pro M4 14 inch 2024
 */
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import type { ThreeElements } from "@react-three/fiber";
 import useMacbookStore from "../../store";
@@ -34,43 +34,24 @@ export default function MacbookModel14(props: GroupProps) {
   texture.colorSpace = SRGBColorSpace;
   texture.needsUpdate = true;
 
-  const materialsToUpdate = useRef<Material[]>([]);
-
-  // Collect materials once when scene is loaded
   useEffect(() => {
-    materialsToUpdate.current = [];
-
     scene.traverse((child) => {
-      if (child instanceof Mesh && !noChangeParts.includes(child.name)) {
-        const material = child.material;
-        if (Array.isArray(material)) {
-          const newMaterials = material.map((mat) => {
-            if ("color" in mat) {
-              const clonedMat = mat.clone();
-              materialsToUpdate.current.push(clonedMat);
-              return clonedMat;
-            }
-            return mat;
-          });
-          child.material = newMaterials;
-        } else if (material && "color" in material) {
-          const clonedMat = material.clone();
-          materialsToUpdate.current.push(clonedMat);
-          child.material = clonedMat;
+      if (child instanceof Mesh) {
+        if (!noChangeParts.includes(child.name)) {
+          const material = child.material;
+          if (Array.isArray(material)) {
+            material.forEach((mat) => {
+              if ("color" in mat) {
+                mat.color = new Color(color);
+              }
+            });
+          } else if (material && "color" in material) {
+            material.color = new Color(color);
+          }
         }
       }
     });
-  }, [scene]);
-
-  // Update colors efficiently using cached materials
-  useEffect(() => {
-    const newColor = new Color(color);
-    materialsToUpdate.current.forEach((mat) => {
-      if ("color" in mat) {
-        mat.color = newColor;
-      }
-    });
-  }, [color]);
+  }, [color, scene]);
 
   return (
     <group {...props} dispose={null}>

@@ -18,6 +18,7 @@ const ProductViewer = () => {
         <div className="flex-center gap-5 mt-5">
           <div className="color-control" role="group" aria-label="Color selection">
             <button
+              type="button"
               onClick={() => setColor("#adb5bd")}
               className={clsx(
                 "bg-neutral-300",
@@ -27,6 +28,7 @@ const ProductViewer = () => {
               aria-pressed={color === "#adb5bd"}
             />
             <button
+              type="button"
               onClick={() => setColor("#2e2c2e")}
               className={clsx(
                 "bg-neutral-900",
@@ -39,6 +41,7 @@ const ProductViewer = () => {
 
           <div className="size-control">
             <button
+              type="button"
               onClick={() => setScale(0.06)}
               className={clsx(
                 scale === 0.06
@@ -51,6 +54,7 @@ const ProductViewer = () => {
               <p>14"</p>
             </button>
             <button
+              type="button"
               onClick={() => setScale(0.08)}
               className={clsx(
                 scale === 0.08
