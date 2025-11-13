@@ -19,7 +19,7 @@ const ModelScroll = () => {
   // Pre-load all feature videos during component mount
   useEffect(() => {
     const videos: HTMLVideoElement[] = [];
-    
+
     featureSequence.forEach((feature) => {
       const v = document.createElement("video");
 
@@ -128,7 +128,7 @@ const Features = () => {
               alt={feature.highlight}
               width={64}
               height={64}
-              loading="lazy"
+              loading="eager"
               decoding="async"
             />
             <p>

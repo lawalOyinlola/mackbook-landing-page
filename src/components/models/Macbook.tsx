@@ -38,19 +38,13 @@ export default function MacbookModel(props: GroupProps) {
         if (!noChangeParts.includes(child.name)) {
           const material = child.material;
           if (Array.isArray(material)) {
-            const newMaterials = material.map((mat) => {
+            material.forEach((mat) => {
               if ("color" in mat) {
-                const clonedMat = mat.clone();
-                clonedMat.color = new Color(color);
-                return clonedMat;
+                mat.color = new Color(color);
               }
-              return mat;
             });
-            child.material = newMaterials;
           } else if (material && "color" in material) {
-            const clonedMat = material.clone();
-            clonedMat.color = new Color(color);
-            child.material = clonedMat;
+            material.color = new Color(color);
           }
         }
       }

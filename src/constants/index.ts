@@ -122,12 +122,14 @@ const featureSequence = [
   { videoPath: "/videos/feature-5.mp4", boxClass: ".box5", delay: 0 },
 ];
 
+const MY_PORTFOLIO_URL: string = "https://www.lawaloyinlola.com";
+
 const footerLinks: FooterLink[] = [
-  { label: "Privacy Policy", link: "#" },
-  { label: "Terms of Use", link: "#" },
-  { label: "Sales Policy", link: "#" },
-  { label: "Legal", link: "#" },
-  { label: "Site Map", link: "#" },
+  { label: "Privacy Policy", link: MY_PORTFOLIO_URL },
+  { label: "Terms of Use", link: MY_PORTFOLIO_URL },
+  { label: "Sales Policy", link: MY_PORTFOLIO_URL },
+  { label: "Legal", link: MY_PORTFOLIO_URL },
+  { label: "Site Map", link: MY_PORTFOLIO_URL },
 ];
 
 export {
@@ -138,4 +140,5 @@ export {
   noChangeParts,
   performanceImages,
   performanceImgPositions,
+  MY_PORTFOLIO_URL,
 };
