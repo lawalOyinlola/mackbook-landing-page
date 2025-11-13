@@ -8,20 +8,6 @@ const Hero = () => {
     if (!video) return;
 
     video.playbackRate = 2;
-
-    // const attemptPlay = () => {
-    //   video.play().catch(() => {});
-    // };
-
-    // if (video.readyState >= 2) {
-    //   attemptPlay();
-    // } else {
-    //   video.addEventListener("loadeddata", attemptPlay, { once: true });
-    // }
-
-    // return () => {
-    //   video.removeEventListener("loadeddata", attemptPlay);
-    // };
   }, []);
 
   return (

@@ -1,10 +1,228 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Macbook Pro</title>
+
+    <meta name="content-language" content="en-US" />
+
+    <!-- DNS Prefetch for better performance -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+
+    <!-- Primary Meta Tags -->
+    <title>MacBook Pro - Next-level Performance | Built by Yero</title>
+    <meta
+      name="title"
+      content="MacBook Pro - Next-level Performance | Built by Yero"
+    />
+    <meta
+      name="description"
+      content="Experience the MacBook Pro with M4 chip. Next-level graphics performance, AI-powered features, and stunning design. Built by Yero."
+    />
+    <meta
+      name="keywords"
+      content="MacBook Pro, M4 chip, Apple MacBook, laptop, performance, graphics, AI features, technology, built by Yero"
+    />
+    <meta name="author" content="Yero" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="revisit-after" content="7 days" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yero-macbook-pro.vercel.app/" />
+    <meta
+      property="og:title"
+      content="MacBook Pro - Next-level Performance | Built by Yero"
+    />
+    <meta
+      property="og:description"
+      content="Experience the MacBook Pro with M4 chip. Next-level graphics performance, AI-powered features, and stunning design. Built by Yero."
+    />
+    <meta property="og:image" content="/readme/yero-macbook.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="MacBook Pro Clone - Built by Yero" />
+    <meta property="og:site_name" content="MacBook Pro Clone" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content="https://yero-macbook-pro.vercel.app/"
+    />
+    <meta
+      property="twitter:title"
+      content="MacBook Pro - Next-level Performance | Built by Yero"
+    />
+    <meta
+      property="twitter:description"
+      content="Experience the MacBook Pro with M4 chip. Next-level graphics performance, AI-powered features, and stunning design. Built by Yero."
+    />
+    <meta property="twitter:image" content="/readme/yero-macbook.webp" />
+    <meta
+      property="twitter:image:alt"
+      content="MacBook Pro Clone - Built by Yero"
+    />
+    <meta property="twitter:creator" content="@HoneyzRich" />
+    <meta property="twitter:site" content="@HoneyzRich" />
+
+    <!-- Theme Color -->
+    <meta
+      name="theme-color"
+      content="#000000"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta
+      name="theme-color"
+      content="#ffffff"
+      media="(prefers-color-scheme: light)"
+    />
+
+    <!-- Favicons - Light Mode (default) -->
+    <link
+      id="favicon"
+      rel="icon"
+      type="image/x-icon"
+      href="/favicon_black/favicon.ico"
+    />
+    <link
+      id="favicon-16"
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon_black/favicon-16x16.png"
+    />
+    <link
+      id="favicon-32"
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon_black/favicon-32x32.png"
+    />
+    <link
+      id="apple-touch-icon"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon_black/apple-touch-icon.png"
+    />
+
+    <!-- Script to switch favicons based on color scheme -->
+    <script>
+      (function () {
+        const favicon = document.getElementById("favicon");
+        const favicon16 = document.getElementById("favicon-16");
+        const favicon32 = document.getElementById("favicon-32");
+        const appleTouchIcon = document.getElementById("apple-touch-icon");
+
+        function updateFavicons() {
+          const isDark = window.matchMedia(
+            "(prefers-color-scheme: dark)"
+          ).matches;
+          const path = isDark ? "/favicon" : "/favicon_black";
+
+          if (favicon) favicon.href = path + "/favicon.ico";
+          if (favicon16) favicon16.href = path + "/favicon-16x16.png";
+          if (favicon32) favicon32.href = path + "/favicon-32x32.png";
+          if (appleTouchIcon)
+            appleTouchIcon.href = path + "/apple-touch-icon.png";
+        }
+
+        // Initial check
+        updateFavicons();
+
+        // Listen for changes
+        window
+          .matchMedia("(prefers-color-scheme: dark)")
+          .addEventListener("change", updateFavicons);
+      })();
+    </script>
+
+    <!-- Manifest -->
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+
+    <!-- Additional SEO -->
+    <meta name="application-name" content="MacBook Pro Clone" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="MacBook Pro" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="msapplication-TileColor" content="#000000" />
+    <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yero-macbook-pro.vercel.app" />
+
+    <!-- Attribution -->
+    <meta name="creator" content="Yero" />
+    <meta name="designer" content="Yero" />
+
+    <!-- Structured Data (JSON-LD) for better SEO -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "MacBook Pro Clone",
+        "alternateName": "MacBook Pro - Next-level Performance",
+        "url": "https://yero-macbook-pro.vercel.app",
+        "description": "Experience the MacBook Pro with M4 chip. Next-level graphics performance, AI-powered features, and stunning design. Built by Yero.",
+        "author": {
+          "@type": "Person",
+          "name": "Yero"
+        },
+        "creator": {
+          "@type": "Person",
+          "name": "Yero"
+        },
+        "publisher": {
+          "@type": "Person",
+          "name": "Yero"
+        },
+        "inLanguage": "en-US",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://yero-macbook-pro.vercel.app/?s={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "MacBook Pro",
+        "description": "Experience the MacBook Pro with M4 chip. Next-level graphics performance, AI-powered features, and stunning design.",
+        "brand": {
+          "@type": "Brand",
+          "name": "Apple"
+        },
+        "manufacturer": {
+          "@type": "Organization",
+          "name": "Apple Inc."
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "1599",
+          "priceCurrency": "USD",
+          "priceValidUntil": "2025-12-31",
+          "availability": "https://schema.org/InStock",
+          "url": "https://yero-macbook-pro.vercel.app"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "reviewCount": "1250"
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

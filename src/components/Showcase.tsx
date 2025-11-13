@@ -1,6 +1,9 @@
 import { useMediaQuery } from "react-responsive";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Showcase = () => {
   const isTablet = useMediaQuery({ query: "(max-width: 1024px)" });
@@ -30,7 +33,7 @@ const Showcase = () => {
       <div className="media">
         <video src="/videos/game.mp4" loop muted autoPlay playsInline />
         <div className="mask">
-          <img src="icons/mask-logo.svg" />
+          <img src="icons/mask-logo.svg" alt="Apple logo mask" />
         </div>
       </div>
 
@@ -43,9 +46,8 @@ const Showcase = () => {
               <p>
                 Introducing{" "}
                 <span className="text-white">
-                  M4, the next generation of Apple silicon
+                  M4, the next generation of Apple silicon.
                 </span>
-                . M4 powers
               </p>
               <p>
                 It drives Apple Intelligence on iPad Pro, so you can write,
