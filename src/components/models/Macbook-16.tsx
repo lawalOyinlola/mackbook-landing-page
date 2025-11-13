@@ -5,10 +5,10 @@ Files: macbook-16.glb [639.28KB] > /Users/adrianhajdin/Desktop/macbook_gsap_app/
 Author: jackbaeten (https://sketchfab.com/jackbaeten)
 License: CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
 Source: https://sketchfab.com/3d-models/macbook-pro-m3-16-inch-2024-8e34fc2b303144f78490007d91ff57c4
-Title: macbook pro M3 16 inch 2024
+Title: macbook pro M4 16 inch 2024
 */
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import type { ThreeElements } from "@react-three/fiber";
 import useMacbookStore from "../../store/index.js";
@@ -37,24 +37,43 @@ export default function MacbookModel16(props: GroupProps) {
     texture.needsUpdate = true;
   }, [texture]);
 
+  const materialsToUpdate = useRef<Material[]>([]);
+
+  // Collect materials once when scene is loaded
   useEffect(() => {
+    materialsToUpdate.current = [];
+
     scene.traverse((child) => {
-      if (child instanceof Mesh) {
-        if (!noChangeParts.includes(child.name)) {
-          const material = child.material;
-          if (Array.isArray(material)) {
-            material.forEach((mat) => {
-              if ("color" in mat) {
-                mat.color = new Color(color);
-              }
-            });
-          } else if (material && "color" in material) {
-            material.color = new Color(color);
-          }
+      if (child instanceof Mesh && !noChangeParts.includes(child.name)) {
+        const material = child.material;
+        if (Array.isArray(material)) {
+          const newMaterials = material.map((mat) => {
+            if ("color" in mat) {
+              const clonedMat = mat.clone();
+              materialsToUpdate.current.push(clonedMat);
+              return clonedMat;
+            }
+            return mat;
+          });
+          child.material = newMaterials;
+        } else if (material && "color" in material) {
+          const clonedMat = material.clone();
+          materialsToUpdate.current.push(clonedMat);
+          child.material = clonedMat;
         }
       }
     });
-  }, [color, scene]);
+  }, [scene]);
+
+  // Update colors efficiently using cached materials
+  useEffect(() => {
+    const newColor = new Color(color);
+    materialsToUpdate.current.forEach((mat) => {
+      if ("color" in mat) {
+        mat.color = newColor;
+      }
+    });
+  }, [color]);
 
   return (
     <group {...props} dispose={null}>

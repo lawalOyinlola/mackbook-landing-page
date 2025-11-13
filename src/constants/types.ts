@@ -7,4 +7,12 @@ type FooterLink = {
   link: string;
 };
 
-export type { NavLink, FooterLink };
+type PerformanceImgPosition = {
+  id: string;
+  left?: number;
+  right?: number;
+  bottom: number;
+  transform?: string;
+};
+
+export type { NavLink, FooterLink, PerformanceImgPosition };
