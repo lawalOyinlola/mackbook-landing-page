@@ -21,6 +21,8 @@
   "display": "standalone",
   "start_url": "/",
   "scope": "/",
-  "orientation": "portrait-primary",
-  "creator": "Yero"
+  "orientation": "landscape-primary",
+  "scope": "/",
+  "orientation": "portrait-primary"
+}
 }

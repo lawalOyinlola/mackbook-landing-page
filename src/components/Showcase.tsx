@@ -33,7 +33,12 @@ const Showcase = () => {
       <div className="media">
         <video src="/videos/game.mp4" loop muted autoPlay playsInline />
         <div className="mask">
-          <img src="icons/mask-logo.svg" alt="Apple logo mask" />
+          <img
+            src="/icons/mask-logo.svg"
+            alt="Apple logo mask"
+            loading="eager"
+            decoding="async"
+          />
         </div>
       </div>
 

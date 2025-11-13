@@ -24,14 +24,13 @@ type GLTFResult = GLTF & {
 type GroupProps = ThreeElements["group"];
 
 export default function MacbookModel(props: GroupProps) {
-  const { color } = useMacbookStore();
+  const { color, texture } = useMacbookStore();
   const gltf = useGLTF(
     "/models/macbook-transformed.glb"
   ) as unknown as GLTFResult;
   const { nodes, materials, scene } = gltf;
 
-  // Using a default video texture path since texture is not in the store
-  const screen = useVideoTexture("/videos/feature-1.mp4");
+  const screen = useVideoTexture(texture);
 
   useEffect(() => {
     scene.traverse((child) => {
