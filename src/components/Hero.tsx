@@ -37,14 +37,20 @@ const Hero = () => {
         autoPlay
         muted
         playsInline
-        controls={false}
         controlsList="nodownload noplaybackrate nofullscreen noremoteplayback"
         disablePictureInPicture
         preload="auto"
         className="pointer-events-none"
       />
 
-      <button>Buy</button>
+      <button
+        onClick={() => {
+          /* TODO: Implement buy handler */
+        }}
+        aria-label="Buy MacBook Pro"
+      >
+        Buy
+      </button>
 
       <p>From $1599 or $133/mo for 12 months</p>
     </section>
