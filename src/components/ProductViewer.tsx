@@ -4,11 +4,20 @@ import useMacbookStore from "../store/index";
 import { Canvas } from "@react-three/fiber";
 import StudioLights from "./three/StudioLights";
 import ModelSwitcher from "./three/ModelSwitcher";
+import { MACBOOK_SCALES } from "../constants";
 
 const ProductViewer = () => {
   const { color, scale, setColor, setScale } = useMacbookStore();
 
   const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
+
+  const macbook14Scale = isMobile
+    ? MACBOOK_SCALES.MOBILE.INCH_14
+    : MACBOOK_SCALES.DESKTOP.INCH_14;
+
+  const macbook16Scale = isMobile
+    ? MACBOOK_SCALES.MOBILE.INCH_16
+    : MACBOOK_SCALES.DESKTOP.INCH_16;
 
   return (
     <section id="product-viewer">
@@ -16,7 +25,11 @@ const ProductViewer = () => {
 
       <div className="controls">
         <div className="flex-center gap-5 mt-5">
-          <div className="color-control" role="group" aria-label="Color selection">
+          <div
+            className="color-control"
+            role="group"
+            aria-label="Color selection"
+          >
             <button
               type="button"
               onClick={() => setColor("#adb5bd")}
@@ -42,27 +55,27 @@ const ProductViewer = () => {
           <div className="size-control">
             <button
               type="button"
-              onClick={() => setScale(0.06)}
+              onClick={() => setScale(macbook14Scale)}
               className={clsx(
-                scale === 0.06
+                scale === macbook14Scale
                   ? "bg-white text-black"
                   : "bg-transparent text-white"
               )}
               aria-label="14 inch model"
-              aria-pressed={scale === 0.06}
+              aria-pressed={scale === macbook14Scale}
             >
               <p>14"</p>
             </button>
             <button
               type="button"
-              onClick={() => setScale(0.08)}
+              onClick={() => setScale(macbook16Scale)}
               className={clsx(
-                scale === 0.08
+                scale === macbook16Scale
                   ? "bg-white text-black"
                   : "bg-transparent text-white"
               )}
               aria-label="16 inch model"
-              aria-pressed={scale === 0.08}
+              aria-pressed={scale === macbook16Scale}
             >
               <p>16"</p>
             </button>
@@ -76,10 +89,7 @@ const ProductViewer = () => {
       >
         <StudioLights />
 
-        <ModelSwitcher
-          scale={isMobile ? scale - 0.03 : scale}
-          isMobile={isMobile}
-        />
+        <ModelSwitcher scale={scale} isMobile={isMobile} />
       </Canvas>
     </section>
   );
