@@ -4,20 +4,13 @@ import useMacbookStore from "../store/index";
 import { Canvas } from "@react-three/fiber";
 import StudioLights from "./three/StudioLights";
 import ModelSwitcher from "./three/ModelSwitcher";
-import { MACBOOK_SCALES } from "../constants";
+import { useMacbookScales } from "../hooks/useMacbookScales";
 
 const ProductViewer = () => {
   const { color, scale, setColor, setScale } = useMacbookStore();
 
   const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
-
-  const macbook14Scale = isMobile
-    ? MACBOOK_SCALES.MOBILE.INCH_14
-    : MACBOOK_SCALES.DESKTOP.INCH_14;
-
-  const macbook16Scale = isMobile
-    ? MACBOOK_SCALES.MOBILE.INCH_16
-    : MACBOOK_SCALES.DESKTOP.INCH_16;
+  const { macbook14Scale, macbook16Scale } = useMacbookScales(isMobile);
 
   return (
     <section id="product-viewer">

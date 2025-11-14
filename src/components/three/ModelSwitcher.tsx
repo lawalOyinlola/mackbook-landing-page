@@ -5,7 +5,7 @@ import MacbookModel14 from "../models/Macbook-14";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { Group, Mesh } from "three";
-import { MACBOOK_SCALES } from "../../constants";
+import { useMacbookScales } from "../../hooks/useMacbookScales";
 
 const ANIMATION_DURATION = 1;
 const OFFSET_DISTANCE = 5;
@@ -50,13 +50,7 @@ const ModelSwitcher = ({ scale, isMobile }: ModelSwitcherProps) => {
   const macbook14Ref = useRef<Group>(null);
   const macbook16Ref = useRef<Group>(null);
 
-  const macbook14Scale = isMobile
-    ? MACBOOK_SCALES.MOBILE.INCH_14
-    : MACBOOK_SCALES.DESKTOP.INCH_14;
-
-  const macbook16Scale = isMobile
-    ? MACBOOK_SCALES.MOBILE.INCH_16
-    : MACBOOK_SCALES.DESKTOP.INCH_16;
+  const { macbook14Scale, macbook16Scale } = useMacbookScales(isMobile);
 
   useGSAP(() => {
     const isShowing16Inch = scale === macbook16Scale;
