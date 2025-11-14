@@ -5,6 +5,7 @@ import MacbookModel14 from "../models/Macbook-14";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { Group, Mesh } from "three";
+import { useMacbookScales } from "../../hooks/useMacbookScales";
 
 const ANIMATION_DURATION = 1;
 const OFFSET_DISTANCE = 5;
@@ -46,32 +47,28 @@ type ModelSwitcherProps = {
 };
 
 const ModelSwitcher = ({ scale, isMobile }: ModelSwitcherProps) => {
-  const SCALE_LARGE_DESKTOP = 0.08;
-  const SCALE_LARGE_MOBILE = 0.05;
-  const SCALE_SMALL_DESKTOP = 0.06;
-  const SCALE_SMALL_MOBILE = 0.03;
+  const macbook14Ref = useRef<Group>(null);
+  const macbook16Ref = useRef<Group>(null);
 
-  const smallMacbookRef = useRef<Group>(null);
-  const largeMacbookRef = useRef<Group>(null);
-
-  const showLargeMacbook =
-    scale === SCALE_LARGE_DESKTOP || scale === SCALE_LARGE_MOBILE;
+  const { macbook14Scale, macbook16Scale } = useMacbookScales(isMobile);
 
   useGSAP(() => {
-    if (showLargeMacbook) {
-      moveGroup(smallMacbookRef.current, -OFFSET_DISTANCE);
-      moveGroup(largeMacbookRef.current, 0);
+    const isShowing16Inch = scale === macbook16Scale;
 
-      fadeMeshes(smallMacbookRef.current, 0);
-      fadeMeshes(largeMacbookRef.current, 1);
+    if (isShowing16Inch) {
+      moveGroup(macbook14Ref.current, -OFFSET_DISTANCE);
+      moveGroup(macbook16Ref.current, 0);
+
+      fadeMeshes(macbook14Ref.current, 0);
+      fadeMeshes(macbook16Ref.current, 1);
     } else {
-      moveGroup(smallMacbookRef.current, 0);
-      moveGroup(largeMacbookRef.current, OFFSET_DISTANCE);
+      moveGroup(macbook14Ref.current, 0);
+      moveGroup(macbook16Ref.current, OFFSET_DISTANCE);
 
-      fadeMeshes(smallMacbookRef.current, 1);
-      fadeMeshes(largeMacbookRef.current, 0);
+      fadeMeshes(macbook14Ref.current, 1);
+      fadeMeshes(macbook16Ref.current, 0);
     }
-  }, [scale]);
+  }, [scale, isMobile, macbook14Scale, macbook16Scale]);
 
   const controlsConfig = {
     snap: true,
@@ -85,18 +82,14 @@ const ModelSwitcher = ({ scale, isMobile }: ModelSwitcherProps) => {
   return (
     <>
       <PresentationControls {...controlsConfig}>
-        <group ref={largeMacbookRef}>
-          <MacbookModel16
-            scale={isMobile ? SCALE_LARGE_MOBILE : SCALE_LARGE_DESKTOP}
-          />
+        <group ref={macbook16Ref}>
+          <MacbookModel16 scale={macbook16Scale} />
         </group>
       </PresentationControls>
 
       <PresentationControls {...controlsConfig}>
-        <group ref={smallMacbookRef}>
-          <MacbookModel14
-            scale={isMobile ? SCALE_SMALL_MOBILE : SCALE_SMALL_DESKTOP}
-          />
+        <group ref={macbook14Ref}>
+          <MacbookModel14 scale={macbook14Scale} />
         </group>
       </PresentationControls>
     </>

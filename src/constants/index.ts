@@ -1,5 +1,7 @@
 import type { NavLink, FooterLink, PerformanceImgPosition } from "./types";
 
+const MY_PORTFOLIO_URL: string = "https://www.lawaloyinlola.com";
+
 const navLinks: NavLink[] = [
   { label: "Store" },
   { label: "Mac" },
@@ -122,8 +124,7 @@ const featureSequence = [
   { videoPath: "/videos/feature-5.mp4", boxClass: ".box5", delay: 0 },
 ];
 
-const MY_PORTFOLIO_URL: string = "https://www.lawaloyinlola.com";
-
+// TODO: Replace with actual legal document URLs when available
 const footerLinks: FooterLink[] = [
   { label: "Privacy Policy", link: MY_PORTFOLIO_URL },
   { label: "Terms of Use", link: MY_PORTFOLIO_URL },
@@ -131,6 +132,18 @@ const footerLinks: FooterLink[] = [
   { label: "Legal", link: MY_PORTFOLIO_URL },
   { label: "Site Map", link: MY_PORTFOLIO_URL },
 ];
+
+// MacBook model scale constants
+export const MACBOOK_SCALES = {
+  MOBILE: {
+    INCH_14: 0.052,
+    INCH_16: 0.06,
+  },
+  DESKTOP: {
+    INCH_14: 0.07,
+    INCH_16: 0.08,
+  },
+} as const;
 
 export {
   features,
