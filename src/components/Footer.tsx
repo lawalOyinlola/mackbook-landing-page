@@ -39,7 +39,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="link"
           >
-            Apple Inc - Yero Clone.
+            Apple Inc - Lawal's Clone.
           </a>{" "}
           All rights reserved.
         </p>
